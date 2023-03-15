@@ -1,0 +1,5 @@
+
+bin/
+obj/
+testoutput.json
+examples/**/*.test.json
