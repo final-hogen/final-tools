@@ -1,0 +1,5 @@
+
+bin/
+obj/
+*.JsonData/*.json
+*.txt
