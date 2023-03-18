@@ -51,7 +51,7 @@ namespace FinalHogen.serialize
     {
       long startpos = file.Position;
       BinaryFormatter formatter = new BinaryFormatter();
-      AnonymousBinder binder = new AnonymousBinder();
+      AnonymousBinder binder = new FinalBinder();
       binder.SetFormatter(formatter);
       object obj;
       //読み込み
@@ -65,30 +65,6 @@ namespace FinalHogen.serialize
         Console.WriteLine("LasPos: " + file.Position);
         Console.WriteLine("Failed to LoadDataClass serialize. Reason: " + e.Message);
         file.Position = startpos;
-        return ReadFinalFileData(file);
-      }
-      Console.WriteLine("Pos: " + file.Position);
-      return new KeyValuePair<string, object>(binder.firstConvertClassName, obj);
-    }
-    /// <summary>
-    /// 最終手段、クラス名なしで読み込む
-    /// </summary>
-    protected static KeyValuePair<string, object> ReadFinalFileData(Stream file)
-    {
-      long startpos = file.Position;
-      BinaryFormatter formatter = new BinaryFormatter();
-      AnonymousBinder binder = new FinalBinder();
-      binder.SetFormatter(formatter);
-      object obj;
-      //読み込み
-      try
-      {
-        obj = formatter.Deserialize(file);
-      }
-      catch (SerializationException e)
-      {
-        Console.WriteLine("LasPos: " + file.Position);
-        Console.WriteLine("Failed to LoadDataClass serialize. Reason: " + e.Message);
         throw;
       }
       Console.WriteLine("Pos: " + file.Position);

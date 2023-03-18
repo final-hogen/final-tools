@@ -48,15 +48,9 @@ namespace FinalHogen.serialize
   /// よく分からんデータを格納する
   /// </summary>
   [Serializable]
-  public class AnonymousSerialData<T> : Dictionary<string,object?>, ISerializable
-  {
-    private static string classnameKey = "@@ClassName";
-    public string? finalClassName {get{return typeof(T).FullName;}}
-    public AnonymousSerialData(){}  // JSONSerializer用、使わない
-    public AnonymousSerialData(Dictionary<string,object?> src)
-    :base(src){}
-    public AnonymousSerialData(SerializationInfo info, StreamingContext context)
-    {
+  public class AnonymousData : Dictionary<string,object?>, ISerializable{
+    public AnonymousData(){}  // JSONSerializer用、使わない
+    public AnonymousData(SerializationInfo info, StreamingContext context){
       SerializationInfoEnumerator iterator = info.GetEnumerator();
       while(iterator.MoveNext()){
         if( iterator.Value!=null&&iterator.Value.GetType().IsArray ){
@@ -65,7 +59,6 @@ namespace FinalHogen.serialize
           this[iterator.Name] = iterator.Value;
         }
       }
-      if(!ContainsKey(classnameKey))this.Add(classnameKey,finalClassName);
     }
     /// <summary>
     /// JsonSerializer では int[,]などの多次元配列は未サポートなので変換
@@ -87,6 +80,21 @@ namespace FinalHogen.serialize
         result[i] = MakeConverArray(source,rank+1,addres);
       }
       return result;
+    }
+  }
+  /// <summary>
+  /// クラス名を引き渡すためだけにジェネリック化
+  /// </summary>
+  [Serializable]
+  public class AnonymousSerialData<T> : AnonymousData
+  {
+    private static string classnameKey = "@@ClassName";
+    public string? finalClassName {get{return typeof(T).FullName;}}
+    public AnonymousSerialData(){}  // JSONSerializer用、使わない
+    public AnonymousSerialData(SerializationInfo info, StreamingContext context)
+    :base(info,context)
+    {
+      if(!ContainsKey(classnameKey))this.Add(classnameKey,finalClassName);
     }
   }
 }
