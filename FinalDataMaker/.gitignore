@@ -4,3 +4,4 @@ obj/
 TextAsset/
 Texture2D/
 *.JsonData/
+mytools/*.runtimeconfig.json
