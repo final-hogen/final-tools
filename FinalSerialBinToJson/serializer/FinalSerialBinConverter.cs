@@ -15,10 +15,11 @@ namespace FinalHogen.serialize
 
     public static void ConvertData(string path)
     {
-      string dirName = path + ".JsonData/";
+      string filename = Path.GetFileName(path);
+      string dirName = filename + ".JsonData/";
       Directory.CreateDirectory(dirName);
       Dictionary<string, object> obj = LoadDataClass(path);
-      SaveJsonData(obj.Keys, dirName + path + ".keys.json");
+      SaveJsonData(obj.Keys, dirName + filename + ".keys.json");
 
       foreach (KeyValuePair<string, object> item in obj)
       {
