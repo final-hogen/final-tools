@@ -15,7 +15,9 @@ namespace FinalHogen.json
       if(item.Parent!=null)item = item.Clone();
       if(item is JsonArray && item.AsArray().Count<=0)return false;
       if(item is JsonObject && item.AsObject().Count<=0)return false;
-      node.Add(key,item);
+      
+      if(item.Parent!=null)node.Add(key,item.Clone());
+      else node.Add(key,item);
       return true;
     }
     /// <summary>
@@ -162,6 +164,17 @@ namespace FinalHogen.json
       return result.ToArray();
     }
     /// <summary>
+    /// JsonObjectのキーだけ取り出す
+    /// </summary>
+    public static List<string> GetKeys(this JsonObject? self){
+      List<string> result = new List<string>();
+      if(self==null)return result;
+      foreach(KeyValuePair<string,JsonNode?> keyval in self){
+        result.Add(keyval.Key);
+      }
+      return result;
+    }
+    /// <summary>
     ///  自身に追加のデータを混ぜる。
     /// </summary>
     public static JsonObject Merge(this JsonObject baseObject, JsonNode? addObject){
@@ -196,6 +209,52 @@ namespace FinalHogen.json
       if(baseObject is JsonArray)return baseObject.AsArray().Merge(addObject);
       if(baseObject is JsonObject)return baseObject.AsObject().Merge(addObject);
       return baseObject;
+    }
+    /// <summary>
+    /// データを取り出して消去
+    /// </summary>
+    public static JsonNode? Pop(this JsonObject? self, string key){
+      if(self==null)return null;
+      JsonNode? getValue = null;
+      self.TryGetPropertyValue(key,out getValue);
+      self.Remove(key);
+      return getValue;
+    }
+    /// <summary>
+    /// 同じ内容か判定
+    /// </summary>
+    public static bool DeepEquals(this JsonNode? self, JsonNode? other)
+    {
+        if (self is JsonArray selfArray && other is JsonArray otherArray)
+        {
+            return (selfArray.Count == otherArray.Count) &&
+                selfArray.Zip(otherArray).All(p => DeepEquals(p.First, p.Second));
+        }
+        if (self is JsonObject selfObject && other is JsonObject otherObject)
+        {
+            if (selfObject.Count != otherObject.Count)
+                return false;
+            foreach (var (key, selfChild) in selfObject)
+            {
+                if (!otherObject.TryGetPropertyValue(key, out var otherChild))
+                    return false;
+                if (!DeepEquals(selfChild, otherChild))
+                    return false;
+            }
+            return true;
+        }
+        if (self is JsonValue selfValue && other is JsonValue otherValue)
+        {
+            var selfJson = self.ToJsonString();
+            var otherJson = other.ToJsonString();
+            return selfJson == otherJson;
+        }
+        if (self is null && other is null)
+        {
+            return true;
+        }
+
+        return false;
     }
   }
   /// <summary>
