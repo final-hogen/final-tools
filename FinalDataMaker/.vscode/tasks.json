@@ -2,77 +2,49 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "事前準備",
+      "command": "./mytools/PreAction.ps1",
+      "type": "shell",
+      "detail": "ファイルの有無をチェックしたりexeを解凍したりします。",
+    }
+    ,{
       "label": "バイナリからJSON",
       "command": "./mytools/SerializeBin2Json.ps1",
       "type": "shell",
       "detail": "datass2.txt などのバイナリファイルをJSONに展開してカレントにぶちまけます。",
     }
     ,{
-      "label": "mybuild",
-      "command": "dotnet",
-      "type": "process",
+      "label": "ストーリーメーカー実行",
+      "command": "./mytools/BuildAndRun.ps1",
       "args": [
-        "build",
-        "${workspaceFolder}/Child1/Child1.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
+        "FinalStoryMaker"
       ],
-      "problemMatcher": "$msCompile",
-    }
-    ,{
-      "label": "my-watch",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "run",
-        "--project",
-        "${workspaceFolder}/Child1/Child1.csproj"
-      ],
-      "problemMatcher": "$msCompile"
-    }
-    ,{
-      "label": "my-test",
-      "command": "./test.ps1",
       "type": "shell",
-      "args": [
-        "run",
-        "--project",
-        "${workspaceFolder}/Child1/Child1.csproj"
-      ],
-      "problemMatcher": "$msCompile"
+      "detail": "ストーリーのJSONデータを作成します。",
     }
     ,{
-      "label": "task one",
+      "label": "ぜんぶ実行",
       "type": "shell",
-      "command": "echo ${input:sample_arg}",
-    },
-    {
-        "label": "task two",
-        "type": "shell",
-        "command": "echo Two!",
-    }
-    ,{
-        "label": "Task Sequence",
-        "type": "shell",
-        "command": "echo Three!",
-        "options": {
-          "cwd": "${workspaceFolder}"
-        },
-        "presentation": {
-          "reveal": "silent",
-          "close": false,
-          "panel": "shared",
-          "revealProblems": "onProblem"
-        },
-        "dependsOrder": "sequence",
-        "dependsOn": [
-            "task one",
-            "task two"
-        ],
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        }
+      "command": "echo ぜんぶ実行を完了しました。",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "silent",
+        "close": false,
+        "panel": "shared",
+        "revealProblems": "onProblem"
+      },
+      "dependsOrder": "sequence",
+      "dependsOn": [
+          "事前準備"
+          ,"バイナリからJSON"
+          ,"ストーリーメーカー実行"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
     }
   ]
 }
