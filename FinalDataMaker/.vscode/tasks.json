@@ -2,6 +2,12 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "クリーンアップ",
+      "command": "./mytools/CleanUp.ps1",
+      "type": "shell",
+      "detail": "作ったかもしれないファイルを削除します。",
+    }
+    ,{
       "label": "事前準備",
       "command": "./mytools/PreAction.ps1",
       "type": "shell",
@@ -15,11 +21,13 @@
     }
     ,{
       "label": "ストーリーメーカー実行",
-      "command": "./mytools/BuildAndRun.ps1",
+      "command": "dotnet",
+      "type": "process",
       "args": [
-        "FinalStoryMaker"
+        "run",
+        "--project",
+        "${workspaceFolder}/FinalStoryMaker/FinalStoryMaker.csproj"
       ],
-      "type": "shell",
       "detail": "ストーリーのJSONデータを作成します。",
     }
     ,{
@@ -31,9 +39,10 @@
       },
       "presentation": {
         "reveal": "silent",
+        "clear": true,
         "close": false,
-        "panel": "shared",
-        "revealProblems": "onProblem"
+        "echo": false,
+        "showReuseMessage": false
       },
       "dependsOrder": "sequence",
       "dependsOn": [
