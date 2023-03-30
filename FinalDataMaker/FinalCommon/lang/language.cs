@@ -19,7 +19,7 @@ namespace FinalHogen
       int convertNumber = 0;
       if(!int.TryParse(Key,out convertNumber))return Key;
       JsonNode? node = langNode[Key];
-      if(node==null)return "";
+      if(node==null)return Key;
       return ((string?)node)??"";
     }
     public class JP

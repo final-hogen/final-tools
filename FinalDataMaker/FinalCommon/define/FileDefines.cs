@@ -1,8 +1,8 @@
 
 namespace FinalHogen.gear{
   public static class GearFiles{
-    static string OutputJsonDirectry = "出力json";
-    static Dictionary<string,string> finalFiileNames = new Dictionary<string,string>(){
+    public static readonly string OutputJsonDirectry = "出力json/";
+    public static readonly Dictionary<string,string> finalFiileNames = new Dictionary<string,string>(){
       {"GirlData","datass2.txt.JsonData/118-GirlData.json"},
       {"GirlSkin","datass2.txt.JsonData/119-GirlSkinData.json"},
       {"GirlAwakeData","datass2.txt.JsonData/117-GirlAwakeData.json"},
@@ -21,6 +21,10 @@ namespace FinalHogen.gear{
 
       {"LangData","JAP_LanguageData.txt.JsonData/000-.json"},
       {"CNLangData","SC_LanguageData.txt.JsonData/000-.json"},
+
+      {"StoryMessage","JAP_storyJsonDatas.txt.JsonData/000-.json"},
+      {"StoryAction","datass.txt.JsonData/026-DialogActionDatas.json"},
+
       {"KeyToText","datass2.txt.JsonData/132-KeyToTextData.json"},
       {"PropertyData","datass2.txt.JsonData/188-PropertyData.json"},
       {"SystemConfigData","datass2.txt.JsonData/273-SystemConfigData.json"},
@@ -33,11 +37,11 @@ namespace FinalHogen.gear{
       {"SuitData","datass2.txt.JsonData/264-SuitData.json"},
       {"MachineArmorData","datass2.txt.JsonData/159-MachineArmorData.json"},
 
-      {"EquipBagData","datass.txt.JsonData/007-EquipBagData.json"},
-      {"EquipBodyData","datass.txt.JsonData/009-EquipBodyData.json"},
-      {"EquipLegData","datass.txt.JsonData/018-EquipLegData.json"},
-      {"EquipArmData","datass.txt.JsonData/021-EquipArmData.json"},
-      {"BulletData","datass.txt.JsonData/020-BulletData.json"},
+      {"EquipBagData","datass.txt.JsonData/009-EquipBagData.json"},
+      {"EquipBodyData","datass.txt.JsonData/005-EquipBodyData.json"},
+      {"EquipLegData","datass.txt.JsonData/013-EquipLegData.json"},
+      {"EquipArmData","datass.txt.JsonData/018-EquipArmData.json"},
+      {"BulletData","datass.txt.JsonData/022-BulletData.json"},
       
       {"StarShipWepon","datass2.txt.JsonData/260-StarshipsubsidiarycannonData.json"},
       {"StarShipBuff","datass2.txt.JsonData/259-StarshipbuffData.json"},

@@ -107,6 +107,16 @@ namespace FinalHogen.json
       return i>=myfullpath.Length&&j>=fullpath.Length;
     }
     /// <summary>
+    ///   配列を結合(nullのぞく)
+    /// </summary>
+    public static JsonArray? Concat(this JsonArray? self, JsonArray? addData){
+      if(self==null||addData==null)return self;
+      foreach(JsonNode? node in addData){
+        if(node!=null)self.Add(node.Clone());
+      }
+      return self;
+    }
+    /// <summary>
     ///   指定されたパスのデータを探す(スラッシュ区切り)
     /// </summary>
     public static JsonNode? FetchPath(this JsonNode node, string path){

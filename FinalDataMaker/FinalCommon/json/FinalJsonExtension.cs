@@ -1,4 +1,5 @@
 
+using FinalHogen.gear;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 
@@ -37,6 +38,14 @@ namespace FinalHogen.json
         }
       }
       return node.AddContent(key,item);
+    }
+    public static void save(string subdir, string path, JsonNode node){
+     if(!subdir.EndsWith("/"))subdir+="/";
+      path = GearFiles.OutputJsonDirectry+subdir+path;
+      string? dir = Path.GetDirectoryName(path);
+      if(dir!=null)Directory.CreateDirectory(dir);
+      JsonFile.save(node,path);
+      Console.WriteLine("save done. "+path);
     }
   }
 }
