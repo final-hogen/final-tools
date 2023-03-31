@@ -7,17 +7,29 @@ namespace FinalHogen.json
   /// JsonNode に色々機能を追加する
   /// </summary>
   public static class JsonExtension{
+    private static JsonNode? GetContentItem(JsonNode? item){
+      if(item==null)return null;
+      if(item is JsonArray && item.AsArray().Count<=0)return null;
+      if(item is JsonObject && item.AsObject().Count<=0)return null;
+      if(item.Parent!=null)item = item.Clone();
+      return item;
+    }
     /// <summary>
     /// null や 空 でなければコンテンツを追加する。すでに親もちの場合はCloneする。
     /// </summary>
     public static bool AddContent(this JsonObject node, string key, JsonNode? item){
+      item = GetContentItem(item);
       if(item==null)return false;
-      if(item.Parent!=null)item = item.Clone();
-      if(item is JsonArray && item.AsArray().Count<=0)return false;
-      if(item is JsonObject && item.AsObject().Count<=0)return false;
-      
-      if(item.Parent!=null)node.Add(key,item.Clone());
-      else node.Add(key,item);
+      node.Add(key,item);
+      return true;
+    }
+    /// <summary>
+    /// null や 空 でなければコンテンツを追加する。すでに親もちの場合はCloneする。
+    /// </summary>
+    public static bool WritePathContent(this JsonObject node, string path, JsonNode? item){
+      item = GetContentItem(item);
+      if(item==null)return false;
+      node.WritePath(path,item);
       return true;
     }
     /// <summary>
@@ -143,6 +155,33 @@ namespace FinalHogen.json
         node = check;
       }
       return node;
+    }
+    /// <summary>
+    /// パス指定で書き込む
+    /// </summary>
+    public static void WritePath(this JsonObject self, string jsonPath,JsonNode? addNode)
+    {
+      string[] split = jsonPath.Split('/');
+      self.WritePath(split,addNode);
+    }
+    /// <summary>
+    /// パス指定で書き込む
+    /// </summary>
+    public static void WritePath(this JsonObject self, string[] jsonPath,JsonNode? addNode)
+    {
+      for(int i=0;i<jsonPath.Length-1;++i)
+      {
+        string nowPath = jsonPath[i];
+        JsonNode? check = self[jsonPath[i]];
+        if(check==null)
+        {
+          JsonObject newContent = new JsonObject();
+          self.Add(nowPath,newContent);
+          check = newContent;
+        }
+        self = check.AsObject();
+      }
+      self[jsonPath[jsonPath.Length-1]] = addNode;
     }
     /// <summary>
     /// ワイルドカード(*)指定可能なfetchPath(スラッシュ区切り)。

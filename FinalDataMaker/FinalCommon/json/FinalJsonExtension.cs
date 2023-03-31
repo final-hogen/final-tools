@@ -29,7 +29,7 @@ namespace FinalHogen.json
       str = str.Replace("\"","”").Replace("&","＆").Replace("<","＜").Replace(">","＞");
       return str;
     }
-    public static bool AddData(this JsonObject node, string key, JsonNode? item){
+    private static JsonNode? GetDataItem(JsonNode? item){
       JsonValue? value = item as JsonValue;
       if(value!=null){
         string? str;
@@ -37,7 +37,15 @@ namespace FinalHogen.json
           item = JsonValue.Create(str.FinalSafeString());
         }
       }
+      return item;
+    }
+    public static bool AddData(this JsonObject node, string key, JsonNode? item){
+      item = GetDataItem(item);
       return node.AddContent(key,item);
+    }
+    public static bool WritePathData(this JsonObject node, string key, JsonNode? item){
+      item = GetDataItem(item);
+      return node.WritePathContent(key,item);
     }
     public static void save(string subdir, string path, JsonNode node){
      if(!subdir.EndsWith("/"))subdir+="/";
