@@ -12,7 +12,7 @@ namespace FinalHogen.spine
   /// </summary>
   public class SkelConvert{
     protected string readFolder = "TextAsset/";
-    protected string writeBaseFolder = "出力武器spine/";
+    protected string writeBaseFolder = "出力spine/";
     protected string exeFile = "mytools/FinalSpineBinToJson.exe";
     protected string readExt = ".skel.asset";
     protected string writeExt = ".json";

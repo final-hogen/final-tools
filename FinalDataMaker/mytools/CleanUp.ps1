@@ -6,4 +6,4 @@ Remove-item mytools/*.exe 	-Recurse -Force
 Remove-item mytools/*.dll 	-Recurse -Force
 Remove-item mytools/*.runtimeconfig.json 	-Recurse -Force
 Remove-item 出力json 	-Recurse -Force
-Remove-item 出力武器spine 	-Recurse -Force
+Remove-item 出力spine 	-Recurse -Force
