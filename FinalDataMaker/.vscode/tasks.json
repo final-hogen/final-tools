@@ -31,6 +31,17 @@
       "detail": "ストーリーのJSONデータを作成します。",
     }
     ,{
+      "label": "パーツメーカー実行",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "run",
+        "--project",
+        "${workspaceFolder}/FinalPartsDataMaker/FinalPartsDataMaker.csproj"
+      ],
+      "detail": "武器胸部脚部背部、チップパーツのJSONデータを作成します。",
+    }
+    ,{
       "label": "ぜんぶ実行",
       "type": "shell",
       "command": "echo ぜんぶ実行を完了しました。",
@@ -49,6 +60,7 @@
           "事前準備"
           ,"バイナリからJSON"
           ,"ストーリーメーカー実行"
+          ,"パーツメーカー実行"
       ],
       "group": {
         "kind": "build",
