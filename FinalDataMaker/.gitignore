@@ -5,4 +5,5 @@ TextAsset/
 Texture2D/
 *.JsonData/
 出力json/
+出力武器spine/
 mytools/*.runtimeconfig.json
