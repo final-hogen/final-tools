@@ -31,6 +31,17 @@
       "detail": "ストーリーのJSONデータを作成します。",
     }
     ,{
+      "label": "戦艦メーカー実行",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "run",
+        "--project",
+        "${workspaceFolder}/FinalStarShipMaker/FinalStarShipMaker.csproj"
+      ],
+      "detail": "戦艦武器、戦艦バフのJSONデータを作成します。",
+    }
+    ,{
       "label": "パーツメーカー実行",
       "command": "dotnet",
       "type": "process",
@@ -60,6 +71,7 @@
           "事前準備"
           ,"バイナリからJSON"
           ,"ストーリーメーカー実行"
+          ,"戦艦メーカー実行"
           ,"パーツメーカー実行"
       ],
       "group": {
