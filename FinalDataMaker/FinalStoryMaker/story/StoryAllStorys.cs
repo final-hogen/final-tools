@@ -40,7 +40,9 @@ namespace FinalHogen.story{
       JsonObject? storyScenes = Get(id) as JsonObject;
       if(storyScenes==null)return null;
       foreach(KeyValuePair<string,JsonNode?> keyval in storyScenes){
-        result.AddContent("dialog"+keyval.Key,StroyScene.Convert(this,keyval.Value));
+        JsonObject scene = new JsonObject();
+        scene.AddContent("commands",StroyScene.Convert(this,keyval.Value));
+        result.AddContent("dialog"+keyval.Key,scene);
       }
       return result;
     }
