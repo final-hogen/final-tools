@@ -81,6 +81,7 @@ namespace FinalHogen.story{
         msgObject.SetCommand("message");
         msgObject.Add("id",name);
         msgObject.Add("message","");
+        msgObject.Add("stop",0);
         result.Add(msgObject);
       }
       return result;
