@@ -4,7 +4,7 @@ using FinalHogen.json;
 
 namespace FinalHogen.pilot
 {
-  class TalentUndergroundData : FinalJsonNode
+  public class TalentUndergroundData : FinalJsonNode
   {
     static Dictionary<string,string> checkValues = new Dictionary<string, string>(){
     {"ProfessionType1","守護"},
@@ -24,9 +24,10 @@ namespace FinalHogen.pilot
     public FinalFileMapper mapper;
     protected Dictionary<string,float> RareRate = new Dictionary<string, float>();
     public PilotCommonData common;
+    public Dictionary<string,JsonObject> Converted = new Dictionary<string, JsonObject>();
     static string RateKey= "品质机师天赋点奖励获取比例";  // SR品质机师天赋点奖励获取比例
-    public TalentUndergroundData(PilotCommonData commonData, Dictionary<string,string> fiileNames)
-    :base("TalentRewardData",fiileNames){
+    public TalentUndergroundData(PilotCommonData commonData, Dictionary<string,string> fileNames)
+    :base("TalentRewardData",fileNames){
       common = commonData;
       saveSubFolder ="パラメータ/潜在/";
       mapper = new FinalFileMapper("潜在");
@@ -70,6 +71,7 @@ namespace FinalHogen.pilot
     }
     public override JsonNode? Convert(string id)
     {
+      if(Converted.ContainsKey(id))return Converted[id];
       JsonArray nodes = Get(id)!.AsArray();
       if(nodes.Count<=0)throw new Exception();
       JsonObject result = new JsonObject();
@@ -90,6 +92,27 @@ namespace FinalHogen.pilot
         data.AddData("値",ConvertPacent(src));
         target.AddData(number,data);
       }
+      Converted[id] = result;
+      return result;
+    }
+    public JsonObject? MakeSumData(string id){
+      JsonObject? talentObject = Convert(id) as JsonObject;
+      if(talentObject==null)return null;
+      JsonObject result = new JsonObject();
+      foreach(KeyValuePair<string,JsonNode?> layers in talentObject){
+        foreach(KeyValuePair<string,JsonNode?> numbers in layers.Value!.AsObject() ){
+          JsonObject numberData =  numbers.Value!.AsObject();
+          string Key = numberData.FetchPath("種類")!.ToString();
+          float Value = (float)numberData.FetchPath("値")!;
+          JsonNode? oldValue = null;
+          if(result.TryGetPropertyValue(Key,out oldValue)){
+            if(Key=="潜在スキル"){
+              Value = Math.Max(Value,(float)oldValue!);
+            }else Value = Value+(float)oldValue!;
+          }
+          result[Key]=Value;
+        }
+      }
       return result;
     }
     public override void SaveAll()
@@ -98,9 +121,10 @@ namespace FinalHogen.pilot
       mapper.Save();
     }
     protected JsonNode ConvertPacent(JsonNode src){
-      if(!(bool)src["IsCore"]!)return src["value"]!;
-      if(1==(int)src["type"]!)return src["value"]!; //潜在スキル
-      float value = (float)src["value"]!;
+      JsonNode valueNode = src["value"]!;
+      if(!(bool)src["IsCore"]!)return valueNode;
+      if(1==(int)src["type"]!)return valueNode; //潜在スキル
+      float value = (float)valueNode;
       return value*100.0f;
     }
     protected JsonObject MakeRareTalent(string rare, JsonObject sourceNode){

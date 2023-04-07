@@ -11,6 +11,8 @@ namespace FinalHogen
       PilotCommonData common = new PilotCommonData(GearFiles.finalFiileNames);
       TalentUndergroundData talent = new TalentUndergroundData(common,GearFiles.finalFiileNames);
       talent.SaveAll();
+      PilotData pilot = new PilotData(common,talent,GearFiles.finalFiileNames);
+      pilot.SaveAll();
     }
   }
 }

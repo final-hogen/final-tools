@@ -181,6 +181,7 @@ namespace FinalHogen.json
         }
         self = check.AsObject();
       }
+      if(addNode!=null&&addNode.Parent!=null)addNode = addNode.Clone();
       self[jsonPath[jsonPath.Length-1]] = addNode;
     }
     /// <summary>

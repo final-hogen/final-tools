@@ -28,7 +28,7 @@ namespace FinalHogen.pilot
         }
      return node.FetchPath("UiDesc").ToLang(Lang);
     }
-    public JsonObject ConvertKeyValues(JsonNode sourceNode)
+    public JsonObject ConvertKeyValues(JsonNode sourceNode,bool pacent=false)
     {
       JsonObject result = new JsonObject();
       JsonNode? keys = sourceNode["keys"];
@@ -41,7 +41,9 @@ namespace FinalHogen.pilot
         if(key==null || value==null)return result;
         string? newKey = Get(key);
         if(newKey==null)continue;
-        result[newKey] = value;
+        float fValue = (float)value;
+        if(pacent)result[newKey] = fValue*100.0f;
+        else result[newKey] = fValue;
       }
       return result;
     }
