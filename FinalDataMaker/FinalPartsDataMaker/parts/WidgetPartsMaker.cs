@@ -29,7 +29,7 @@ namespace FinalHogen.parts
       string icon = node.FetchPath("Icon")!.ToString();
       string? name = node.FetchPath("BaseData+<Name>k__BackingField").ToLang(Lang);
       if(name==null)return;
-      common.AddImage("パーツ/"+type.ToString()+"/"+name+"/アイコン.png",icon);
+      common.AddImage("パーツ/"+type.ToString()+"/"+name+"/アイコン",icon);
     }
     protected JsonObject MakeCommonData(JsonNode node){
       JsonObject result = new JsonObject();

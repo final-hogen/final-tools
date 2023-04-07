@@ -55,9 +55,9 @@ namespace FinalHogen.pilot
         string normalIcon = keyval.Value.FetchPath("HeadIcon")!.ToString();
         string longIcon = keyval.Value.FetchPath("HeadIcon_square")!.ToString();
         string skinPath = "パイロット/"+girlName+"/スキン/"+skinName;
-        mapper.AddImage(skinPath+"/顔.png",faceIcon);
-        mapper.AddImage(skinPath+"/アイコン.png",normalIcon);
-        mapper.AddImage(skinPath+"/ロング.png",longIcon);
+        mapper.AddImage(skinPath+"/顔",faceIcon);
+        mapper.AddImage(skinPath+"/アイコン",normalIcon);
+        mapper.AddImage(skinPath+"/ロング",longIcon);
       }
       return result;
     }
