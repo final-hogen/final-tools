@@ -7,3 +7,4 @@ TextAsset　と Texture2D フォルダ
 .NET SDK 7 以上  
 Windows 環境  
 Visual Studio Code  
+waifu2x-caffe.zip(このフォルダに置いてください)  
