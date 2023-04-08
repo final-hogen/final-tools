@@ -10,4 +10,5 @@ Remove-item 出力spine 	-Recurse -Force
 Remove-item 画像png 	-Recurse -Force
 Remove-item 画像texpng 	-Recurse -Force
 Remove-item 画像 	-Recurse -Force
+Remove-item downloaded/*.webp 	-Recurse -Force
 Remove-item waifu2x-caffe 	-Recurse -Force
