@@ -3,6 +3,7 @@
 $webpFolder = "画像/"
 $pngFolder = "画像png/"
 $waifu2x="waifu2x-caffe\waifu2x-caffe-cui.exe"
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 
 mytools/CopyMapperFiles.ps1 "出力json/filemapperパイロット.json"
 mytools/CopyMapperFiles.ps1 "出力json/filemapperスキル.json"

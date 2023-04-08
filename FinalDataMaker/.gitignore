@@ -7,6 +7,7 @@ Texture2D/
 出力json/
 出力spine/
 画像png/
+画像texpng/
 画像/
 mytools/*.runtimeconfig.json
 waifu2x-caffe/
