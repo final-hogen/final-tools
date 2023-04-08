@@ -76,13 +76,13 @@ namespace FinalHogen.pilot
       if(girlName==null)throw new Exception();
       JsonObject? result = ConvertSkill(node["1"]!);
       if(result==null)return null;
-      result.AddData("PS",common.skill.MakeTalentSkill(int.Parse(girlID)));
       foreach(KeyValuePair<string,JsonNode?> keyval in result){
         JsonNode? icon = keyval.Value!.AsObject().Pop("アイコン");
         string name = keyval.Value["名前"]!.ToString();
         string path = "パイロット/"+girlName+"/スキル/"+name+"/アイコン";
         mapperSkill.AddImage(path,icon!.ToString());
       }
+      result.AddData("PS",common.skill.MakeTalentSkill(int.Parse(girlID)));
       return result;
     }
     protected JsonObject? ConvertSkill(JsonNode skinNode){

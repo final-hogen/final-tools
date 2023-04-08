@@ -53,6 +53,23 @@
       "detail": "武器胸部脚部背部、チップパーツのJSONデータを作成します。",
     }
     ,{
+      "label": "パイロットメーカー実行",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "run",
+        "--project",
+        "${workspaceFolder}/FinalPilotDataMaker/FinalPilotDataMaker.csproj"
+      ],
+      "detail": "パイロットのJSONデータを作成します。",
+    }
+    ,{
+      "label": "アイコン画像作成",
+      "command": "./mytools/MakeImageFiles.ps1",
+      "type": "shell",
+      "detail": "アイコン画像などをTexture2Dからコピーしてwebpにします。画像変換は重い。",
+    }
+    ,{
       "label": "ぜんぶ実行",
       "type": "shell",
       "command": "echo ぜんぶ実行を完了しました。",
@@ -73,6 +90,8 @@
           ,"ストーリーメーカー実行"
           ,"戦艦メーカー実行"
           ,"パーツメーカー実行"
+          ,"パイロットメーカー実行"
+          ,"アイコン画像作成"
       ],
       "group": {
         "kind": "build",

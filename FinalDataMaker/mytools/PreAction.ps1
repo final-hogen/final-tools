@@ -25,4 +25,7 @@ foreach ( $file in $execfiles )
 {
   CheckExec $toolfolder $file
 }
-
+if(!(Test-Path ("waifu2x-caffe/waifu2x-caffe-cui.exe")))
+{
+  Expand-Archive -Path "waifu2x-caffe.zip" -DestinationPath "./" -Force
+}
