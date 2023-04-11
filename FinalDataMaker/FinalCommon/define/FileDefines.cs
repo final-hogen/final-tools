@@ -7,14 +7,14 @@ namespace FinalHogen.gear{
       {"GirlSkin","datass2.txt.JsonData/119-GirlSkinData.json"},
       {"GirlAwakeData","datass2.txt.JsonData/117-GirlAwakeData.json"},
       {"GirlStarData","datass2.txt.JsonData/120-GirlStarData.json"},
-      {"GirlVoice","datass2.txt.JsonData/296-VoiceData.json"},
+      {"GirlVoice","datass2.txt.JsonData/302-VoiceData.json"},
 
-      {"SkillData","datass2.txt.JsonData/287-TrunkSkillData.json"},
-      {"SkillDesc","datass2.txt.JsonData/287-TrunkSkillData.json"},
+      {"SkillData","datass2.txt.JsonData/293-TrunkSkillData.json"},
+      {"SkillDesc","datass2.txt.JsonData/293-TrunkSkillData.json"},
       {"SkillGroup","datass2.txt.JsonData/222-SkillArrayData.json"},
       
       {"LevelUpData","datass2.txt.JsonData/122-GirllevelData.json"},
-      {"TalentRewardData","datass2.txt.JsonData/274-TalentRewardData.json"},
+      {"TalentRewardData","datass2.txt.JsonData/280-TalentRewardData.json"},
       {"McvNatureID","datass2.txt.JsonData/143-MCVNatureIdData.json"},
       {"McvGirlSkill","datass2.txt.JsonData/144-MCVNatureUnlockSkillData.json"},
       {"McvSkillData","datass2.txt.JsonData/140-MCVGirlSkillData.json"},
@@ -23,28 +23,28 @@ namespace FinalHogen.gear{
       {"CNLangData","SC_LanguageData.txt.JsonData/000-.json"},
 
       {"StoryMessage","JAP_storyJsonDatas.txt.JsonData/000-.json"},
-      {"StoryAction","datass.txt.JsonData/026-DialogActionDatas.json"},
+      {"StoryAction","datass.txt.JsonData/024-DialogActionDatas.json"},
 
       {"KeyToText","datass2.txt.JsonData/132-KeyToTextData.json"},
       {"PropertyData","datass2.txt.JsonData/188-PropertyData.json"},
-      {"SystemConfigData","datass2.txt.JsonData/273-SystemConfigData.json"},
-      {"BattleConfigData","datass.txt.JsonData/003-BattleConfigData.json"},
+      {"SystemConfigData","datass2.txt.JsonData/279-SystemConfigData.json"},
+      {"BattleConfigData","datass.txt.JsonData/004-BattleConfigData.json"},
 
       {"ItemData","datass2.txt.JsonData/131-ItemData.json"},
       
-      {"WidgetData","datass2.txt.JsonData/308-WidgetData.json"},
-      {"WidgetIntroData","datass2.txt.JsonData/310-WidgetIntroData.json"},
-      {"SuitData","datass2.txt.JsonData/264-SuitData.json"},
+      {"WidgetData","datass2.txt.JsonData/314-WidgetData.json"},
+      {"WidgetIntroData","datass2.txt.JsonData/316-WidgetIntroData.json"},
+      {"SuitData","datass2.txt.JsonData/270-SuitData.json"},
       {"MachineArmorData","datass2.txt.JsonData/159-MachineArmorData.json"},
 
-      {"EquipBagData","datass.txt.JsonData/009-EquipBagData.json"},
-      {"EquipBodyData","datass.txt.JsonData/005-EquipBodyData.json"},
-      {"EquipLegData","datass.txt.JsonData/013-EquipLegData.json"},
-      {"EquipArmData","datass.txt.JsonData/018-EquipArmData.json"},
-      {"BulletData","datass.txt.JsonData/022-BulletData.json"},
+      {"EquipBagData","datass.txt.JsonData/008-EquipBagData.json"},
+      {"EquipBodyData","datass.txt.JsonData/007-EquipBodyData.json"},
+      {"EquipLegData","datass.txt.JsonData/014-EquipLegData.json"},
+      {"EquipArmData","datass.txt.JsonData/021-EquipArmData.json"},
+      {"BulletData","datass.txt.JsonData/020-BulletData.json"},
       
-      {"StarShipWepon","datass2.txt.JsonData/260-StarshipsubsidiarycannonData.json"},
-      {"StarShipBuff","datass2.txt.JsonData/259-StarshipbuffData.json"},
+      {"StarShipWepon","datass2.txt.JsonData/266-StarshipsubsidiarycannonData.json"},
+      {"StarShipBuff","datass2.txt.JsonData/265-StarshipbuffData.json"},
       };
     public static void CheckFiles(){
       CheckFiles(GearFiles.finalFiileNames);
