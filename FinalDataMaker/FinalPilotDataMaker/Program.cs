@@ -7,11 +7,11 @@ namespace FinalHogen
   class Program{
     static void Main(string[] args)
     {
-      GearFiles.CheckFiles();
-      PilotCommonData common = new PilotCommonData(GearFiles.finalFiileNames);
-      TalentUndergroundData talent = new TalentUndergroundData(common,GearFiles.finalFiileNames);
+      Dictionary<string,string> files = GearFiles.MakeFinalfilenames();
+      PilotCommonData common = new PilotCommonData(files);
+      TalentUndergroundData talent = new TalentUndergroundData(common,files);
       talent.SaveAll();
-      PilotData pilot = new PilotData(common,talent,GearFiles.finalFiileNames);
+      PilotData pilot = new PilotData(common,talent,files);
       pilot.SaveAll();
     }
   }

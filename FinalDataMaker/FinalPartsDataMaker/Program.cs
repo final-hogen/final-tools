@@ -8,9 +8,9 @@ namespace FinalHogen
   {
     static void Main(string[] args)
     {
-      GearFiles.CheckFiles();
+      Dictionary<string,string> files = GearFiles.MakeFinalfilenames();
       
-      convert(GearFiles.finalFiileNames);
+      convert(files);
     }
     static void convert(Dictionary<string,string> fiileNames){
       CommonPartsData common = new CommonPartsData(fiileNames);

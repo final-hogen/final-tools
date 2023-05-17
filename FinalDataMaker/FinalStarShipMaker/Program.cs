@@ -7,10 +7,10 @@ namespace FinalHogen
   class Program{
     static void Main(string[] args)
     {
-      GearFiles.CheckFiles();
-      StarShipWepon wepon = new StarShipWepon(GearFiles.finalFiileNames);
+      Dictionary<string,string> files = GearFiles.MakeFinalfilenames();
+      StarShipWepon wepon = new StarShipWepon(files);
       wepon.SaveAll();
-      StarShipBuff buff = new StarShipBuff(GearFiles.finalFiileNames);
+      StarShipBuff buff = new StarShipBuff(files);
       buff.SaveAll();
     }
   }

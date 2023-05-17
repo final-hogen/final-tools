@@ -7,8 +7,8 @@ namespace FinalHogen
   class Program{
     static void Main(string[] args)
     {
-      GearFiles.CheckFiles();
-      StoryAllStorys storys = new StoryAllStorys(GearFiles.finalFiileNames);
+      Dictionary<string,string> files = GearFiles.MakeFinalfilenames();
+      StoryAllStorys storys = new StoryAllStorys(files);
       storys.SaveAll();
     }
   }
